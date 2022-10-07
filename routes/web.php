@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
@@ -18,3 +17,4 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/gioi-thieu.html', [HomeController::class, 'about'])->name('home.about'); 
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index'); 
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store'); 
+Route::delete('/category/{cat}', [CategoryController::class, 'delete'])->name('category.delete'); 

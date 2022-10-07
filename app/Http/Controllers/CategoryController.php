@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -28,5 +29,19 @@ class CategoryController extends Controller
         $form_data = $req->all('name','status');
         Category::create($form_data);
         return redirect()->route('category.index');
+    }
+
+    public function delete (Category $cat)
+    {
+        // Category::find(1)->delete();
+        // Category::where('status', 0)->delete();
+        $products = Product::where('category_id', $cat->id)->get();
+        if ($products->count() == 0) {
+            $cat->delete();
+            return redirect()->route('category.index')->with('yes','Xóa thành côngc...');
+        }
+
+        return redirect()->route('category.index')->with('no','Không xóa được...');
+      
     }
 }

@@ -30,6 +30,18 @@
         </nav>
         
         <div class="container">
+            @if (Session::has('no'))
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>{{Session::get('no')}}!</strong>
+            </div>
+            @endif
+            @if (Session::has('yes'))
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>{{Session::get('yes')}}!</strong>
+            </div>
+            @endif
            @yield('main')
         </div>
         

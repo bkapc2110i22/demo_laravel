@@ -38,6 +38,7 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -45,6 +46,13 @@
         <tr>
             <td>{{$cat->id}}</td>
             <td>{{$cat->name}}</td>
+            <td>
+                <form action="{{route('category.delete', $cat->id)}}" method="POST">
+                    @csrf @method("DELETE")
+                    <button class="btn btn-sm btn-danger" onclick="return confirm('bạn có muốn xóa không?')">Xóa</button>
+                </form>
+                
+            </td>
         </tr>
         @endforeach
     </tbody>
