@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
         $form_data = $req->all('name','status');
         Category::create($form_data);
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('yes','Thêm mới thành côngc...');;
     }
 
     public function delete (Category $cat)
@@ -44,4 +44,26 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->with('no','Không xóa được...');
       
     }
+
+    public function edit(Category $cat)
+    {
+        return view('category.edit', compact('cat'));
+    }
+
+    public function update(Request $req, Category $cat)
+    {
+        $req->validate([
+            'name' => 'required|min:6|max:100|unique:categories,name,'.$cat->id
+        ],[
+            'name.required' => 'Tên danh mục không để trống',
+            'name.min' => 'Tên danh mục tối thiểu 6 ký tự',
+            'name.max' => 'Tên danh mục tối đa 100 ký tự',
+            'name.unique' => 'Tên danh mục này đã được sử dụng'
+        ]);
+
+        $form_data = $req->all('name','status');
+        $cat->update($form_data);
+       return redirect()->route('category.index')->with('yes','Cập nhật thành côngc...');;
+    }
 }
+ 

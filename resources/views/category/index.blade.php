@@ -38,6 +38,7 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Status</th>
             <th></th>
         </tr>
     </thead>
@@ -46,10 +47,12 @@
         <tr>
             <td>{{$cat->id}}</td>
             <td>{{$cat->name}}</td>
+            <td>{{$cat->status == 0 ? 'Ẩn' : 'Hiển thị'}}</td>
             <td>
                 <form action="{{route('category.delete', $cat->id)}}" method="POST">
                     @csrf @method("DELETE")
                     <button class="btn btn-sm btn-danger" onclick="return confirm('bạn có muốn xóa không?')">Xóa</button>
+                    <a class="btn btn-sm btn-success" href="{{route('category.edit', $cat->id)}}">Sửa</a>
                 </form>
                 
             </td>
