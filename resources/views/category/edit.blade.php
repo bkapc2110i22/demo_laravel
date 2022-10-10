@@ -6,6 +6,7 @@
 
 <form action="{{ route('category.update', $cat->id) }}" method="POST"  role="form">
     @csrf @method('PUT')
+    <input type="hidden" name="id" value="{{$cat->id}}">
     <div class="form-group">
         <label class="sr-only" for="">Tên danh mục</label>
         <input class="form-control" name="name" value="{{$cat->name}}">

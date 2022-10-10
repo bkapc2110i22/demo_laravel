@@ -4,7 +4,7 @@
 <h2>Danh mục</h2>
 
 
-<form action="{{ route('category.store') }}" method="POST"  role="form">
+<form action="{{ route('category.store') }}" method="POST" role="form">
     @csrf
     <div class="form-group">
         <label class="sr-only" for="">Tên danh mục</label>
@@ -32,7 +32,26 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<hr>
 
+<!-- FORM TÌM KIẾM  -->
+<form action="" method="get" class="form-inline">
+
+    <div class="form-group">
+        <input class="form-control" name="keyword" placeholder="Input keyword">
+    </div>
+
+    <div class="form-group">
+        <select name="orderByName" class="form-control">
+            <option value="">Mắc định theo tên</option>
+            <option value="ASC">Tăng dần theo tên</option>
+            <option value="DESC">Giảm dần theo tên</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<hr>
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -51,10 +70,11 @@
             <td>
                 <form action="{{route('category.delete', $cat->id)}}" method="POST">
                     @csrf @method("DELETE")
-                    <button class="btn btn-sm btn-danger" onclick="return confirm('bạn có muốn xóa không?')">Xóa</button>
+                    <button class="btn btn-sm btn-danger"
+                        onclick="return confirm('bạn có muốn xóa không?')">Xóa</button>
                     <a class="btn btn-sm btn-success" href="{{route('category.edit', $cat->id)}}">Sửa</a>
                 </form>
-                
+
             </td>
         </tr>
         @endforeach
@@ -62,5 +82,5 @@
 </table>
 
 <br>
-{{$cats->links()}}
+{{$cats->appends(request()->all())->links()}}
 @stop()
