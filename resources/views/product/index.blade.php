@@ -31,6 +31,7 @@
             <th>Name</th>
             <th>Category</th>
             <th>Status</th>
+            <th>Image</th>
             <th></th>
         </tr>
     </thead>
@@ -41,6 +42,9 @@
             <td>{{$product->name}}</td>
             <td>{{$product->cat->name}}</td>
             <td>{{$product->status == 0 ? 'Ẩn' : 'Hiển thị'}}</td>
+            <td>
+                <img src="{{url('public/uploads')}}/{{$product->image}}" alt="" width="60">
+            </td>
             <td>
 
             </td>
