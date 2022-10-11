@@ -12,11 +12,17 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $keyword = request('keyword');
-        $orderBy = request('orderByName','ASC');
-        $cats =  Category::where('name','LIKE','%'.$keyword.'%')->orderBy('name', $orderBy)->paginate();
+       
+        $cats =  Category::search()->paginate();
 
        return view('category.index', compact('cats'));
+    }
+    public function trashed()
+    {
+       
+        $cats =  Category::search()->onlyTrashed()->paginate();
+
+       return view('category.trashed', compact('cats'));
     }
 
     public function store(CategoryCreateRequest $req)

@@ -19,6 +19,7 @@ Route::get('/gioi-thieu.html', [HomeController::class, 'about'])->name('home.abo
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index'); 
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store'); 
 Route::delete('/category/{cat}', [CategoryController::class, 'delete'])->name('category.delete'); 
+Route::get('/category/trashed', [CategoryController::class, 'trashed'])->name('category.trashed'); 
 
 Route::get('/category/edit/{cat}', [CategoryController::class, 'edit'])->name('category.edit'); 
 Route::put('/category/update/{cat}', [CategoryController::class, 'update'])->name('category.update'); 
