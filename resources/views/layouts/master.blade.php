@@ -26,6 +26,9 @@
                 <li>
                     <a href="{{ route('category.index') }}">Category</a>
                 </li>
+                <li>
+                    <a href="{{ route('product.index') }}">Product</a>
+                </li>
             </ul>
         </nav>
         

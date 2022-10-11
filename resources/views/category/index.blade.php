@@ -58,6 +58,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Status</th>
+            <th>Total Product</th>
             <th></th>
         </tr>
     </thead>
@@ -67,6 +68,7 @@
             <td>{{$cat->id}}</td>
             <td>{{$cat->name}}</td>
             <td>{{$cat->status == 0 ? 'Ẩn' : 'Hiển thị'}}</td>
+            <td>{{$cat->products->count()}}</td>
             <td>
                 <form action="{{route('category.delete', $cat->id)}}" method="POST">
                     @csrf @method("DELETE")
