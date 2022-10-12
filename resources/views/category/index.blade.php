@@ -34,6 +34,7 @@
 </form>
 <hr>
 
+<a class="btn btn-info" href="{{route('category.trashed')}}">Thung rac</a>
 <!-- FORM TÌM KIẾM  -->
 <form action="" method="get" class="form-inline">
 

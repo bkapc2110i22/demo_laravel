@@ -25,6 +25,34 @@ class CategoryController extends Controller
        return view('category.trashed', compact('cats'));
     }
 
+    public function restore($id)
+    {
+
+        try {
+            // truy vấn lấy ra sản phẩm đã xóa theo id
+            $category_restore = Category::withTrashed()->find($id);
+
+            // khôi phục sản phẩm đã xóa theo id 
+            $category_restore->restore();
+            return redirect()->route('category.index')->with('yes','Khôi pụch thành côngc...');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('no','Không thành công...');
+        }
+
+    }
+    public function forceDelete($id)
+    {
+        try {
+            // truy vấn lấy ra sản phẩm đã xóa theo id
+            $category_restore = Category::withTrashed()->find($id);
+
+            //  xóa khỏi database 
+            $category_restore->forceDelete();
+            return redirect()->back()->with('yes','thành côngc...');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('no','Không thành công...');
+        }
+    }
     public function store(CategoryCreateRequest $req)
     {
         $form_data = $req->all('name','status');
@@ -36,6 +64,8 @@ class CategoryController extends Controller
     {
         // Category::find(1)->delete();
         // Category::where('status', 0)->delete();
+        $cat->delete();
+        
         $products = Product::where('category_id', $cat->id)->get();
         if ($products->count() == 0) {
             $cat->delete();
@@ -48,7 +78,7 @@ class CategoryController extends Controller
 
     public function edit(Category $cat)
     {
-        // dd ($cat->products);
+        dd($cat);
         return view('category.edit', compact('cat'));
     }
 

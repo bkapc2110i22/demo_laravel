@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->text('content')->nullable();
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->date('deleted_at')->nullable();
         });
     }
 

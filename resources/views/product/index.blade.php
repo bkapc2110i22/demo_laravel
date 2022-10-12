@@ -36,6 +36,7 @@
         </tr>
     </thead>
     <tbody>
+    
         @foreach($products as $product)
         <tr>
             <td>{{$product->id}}</td>
@@ -43,7 +44,7 @@
             <td>{{$product->cat->name}}</td>
             <td>{{$product->status == 0 ? 'Ẩn' : 'Hiển thị'}}</td>
             <td>
-                <img src="{{url('public/uploads')}}/{{$product->image}}" alt="" width="60">
+                <img src="{{url('uploads')}}/{{$product->image}}" alt="" width="60">
             </td>
             <td>
 
