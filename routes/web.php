@@ -19,7 +19,10 @@ use App\Http\Controllers\AdminController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/gioi-thieu.html', [HomeController::class, 'about'])->name('home.about'); 
 
-Route::group(['prefix' => 'admin'], function() {
+Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::post('admin/login', [AdminController::class, 'check_login']);
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     // Route::resource('category', CategoryController::class);
     // Route::resource('product', ProductController::class);
