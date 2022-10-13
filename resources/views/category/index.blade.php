@@ -71,7 +71,7 @@
             <td>{{$cat->status == 0 ? 'Ẩn' : 'Hiển thị'}}</td>
             <td>{{$cat->products->count()}}</td>
             <td>
-                <form action="{{route('category.delete', $cat->id)}}" method="POST">
+                <form action="{{route('category.destroy', $cat->id)}}" method="POST">
                     @csrf @method("DELETE")
                     <button class="btn btn-sm btn-danger"
                         onclick="return confirm('bạn có muốn xóa không?')">Xóa</button>

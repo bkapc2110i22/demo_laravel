@@ -60,15 +60,15 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->with('yes','Thêm mới thành côngc...');;
     }
 
-    public function delete (Category $cat)
+    public function destroy (Category $category)
     {
         // Category::find(1)->delete();
         // Category::where('status', 0)->delete();
-        $cat->delete();
+        $category->delete();
         
-        $products = Product::where('category_id', $cat->id)->get();
+        $products = Product::where('category_id', $category->id)->get();
         if ($products->count() == 0) {
-            $cat->delete();
+            $category->delete();
             return redirect()->route('category.index')->with('yes','Xóa thành côngc...');
         }
 
@@ -76,10 +76,9 @@ class CategoryController extends Controller
 
     }
 
-    public function edit(Category $cat)
+    public function edit(Category $category)
     {
-        dd($cat);
-        return view('category.edit', compact('cat'));
+        return view('category.edit', compact('category'));
     }
 
     public function update(CategoryUpdateRequest $req, Category $cat)

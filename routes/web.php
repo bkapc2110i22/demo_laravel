@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BlogController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,16 +17,19 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/gioi-thieu.html', [HomeController::class, 'about'])->name('home.about'); 
-Route::get('/category', [CategoryController::class, 'index'])->name('category.index'); 
-Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store'); 
-Route::delete('/category/{cat}', [CategoryController::class, 'delete'])->name('category.delete'); 
-Route::get('/category/trashed', [CategoryController::class, 'trashed'])->name('category.trashed'); 
-Route::get('/category/restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
-Route::get('/category/forceDelete/{id}', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
-Route::get('/category/edit/{cat}', [CategoryController::class, 'edit'])->name('category.edit'); 
-Route::put('/category/update/{cat}', [CategoryController::class, 'update'])->name('category.update'); 
 
+Route::group(['prefix' => 'admin'], function() {
+    // Route::resource('category', CategoryController::class);
+    // Route::resource('product', ProductController::class);
+    Route::resources([
+        'category' =>  CategoryController::class,
+        'product' =>  ProductController::class,
+        'blog' =>  BlogController::class,
+    ]);
 
-Route::get('/product', [ProductController::class, 'index'])->name('product.index'); 
-Route::get('/product/create', [ProductController::class, 'create'])->name('product.create'); 
-Route::post('/product/store', [ProductController::class, 'store'])->name('product.store'); 
+    Route::group(['prefix' => 'category'], function() {
+        Route::get('/trashed', [CategoryController::class, 'trashed'])->name('category.trashed'); 
+        Route::get('/restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
+        Route::get('/forceDelete/{id}', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
+    });
+});
