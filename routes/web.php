@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/gioi-thieu.html', [HomeController::class, 'about'])->name('home.about'); 
 
 Route::group(['prefix' => 'admin'], function() {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     // Route::resource('category', CategoryController::class);
     // Route::resource('product', ProductController::class);
     Route::resources([

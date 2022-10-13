@@ -1,9 +1,8 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 @section('title','Quản lý danh mục')
 @section('main')
+
 <h2>Danh mục</h2>
-
-
 <form action="{{ route('category.store') }}" method="POST" role="form">
     @csrf
     <div class="form-group">
@@ -28,7 +27,6 @@
             </label>
         </div>
     </div>
-
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

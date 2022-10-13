@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 @section('title','Quản lý sản phẩm')
 @section('main')
 <h2>Sản phẩm</h2>
