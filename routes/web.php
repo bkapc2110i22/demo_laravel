@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,12 +25,12 @@ Route::post('admin/login', [AdminController::class, 'check_login']);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    // Route::resource('category', CategoryController::class);
-    // Route::resource('product', ProductController::class);
+    Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::resources([
         'category' =>  CategoryController::class,
         'product' =>  ProductController::class,
         'blog' =>  BlogController::class,
+        'user' =>  App\Http\Controllers\UserController::class,
     ]);
 
     Route::group(['prefix' => 'category'], function() {

@@ -11,9 +11,10 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
+
     public function login()
     {
-        // dd (bcrypt(123456));
+        // dd ( bcrypt(123456 ));
         return view('admin.login');
     }
 
@@ -24,5 +25,11 @@ class AdminController extends Controller
        $form_data = $req->only('email','password');
        $check_login = Auth::attempt($form_data);
        return redirect()->route('admin.index');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('admin.login');
     }
 }
