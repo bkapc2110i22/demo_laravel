@@ -20,10 +20,8 @@ class AdminController extends Controller
 
     public function check_login(Request $req)
     {
-
-        
        $form_data = $req->only('email','password');
-       $check_login = Auth::attempt($form_data);
+       $check_login = Auth::attempt($form_data, $req->has('remember')); // check login
        return redirect()->route('admin.index');
     }
 
