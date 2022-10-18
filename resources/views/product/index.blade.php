@@ -36,7 +36,7 @@
         </tr>
     </thead>
     <tbody>
-    
+
         @foreach($products as $product)
         <tr>
             <td>{{$product->id}}</td>
@@ -47,7 +47,8 @@
                 <img src="{{url('uploads')}}/{{$product->image}}" alt="" width="60">
             </td>
             <td>
-
+                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-primary">
+                <i class="fa fa-edit"></i> Sửa</a>
             </td>
         </tr>
         @endforeach

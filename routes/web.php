@@ -30,6 +30,12 @@ Route::post('admin/login', [AdminController::class, 'check_login']);
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+    Route::group(['prefix' => 'category'], function() {
+        Route::get('/trashed', [CategoryController::class, 'trashed'])->name('category.trashed'); 
+        Route::get('/restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
+        Route::get('/forceDelete/{id}', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
+    });
+    
     Route::resources([
         'category' =>  CategoryController::class,
         'product' =>  ProductController::class,
@@ -37,9 +43,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         'user' =>  App\Http\Controllers\UserController::class,
     ]);
 
-    Route::group(['prefix' => 'category'], function() {
-        Route::get('/trashed', [CategoryController::class, 'trashed'])->name('category.trashed'); 
-        Route::get('/restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
-        Route::get('/forceDelete/{id}', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
-    });
+   
 });
