@@ -3,14 +3,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 use Auth;
 class HomeController extends Controller 
 {
     public function index()
     {
-        $cats = Category::paginate(2);
+        $newProducts = Product::orderBy('created_at','DESC')->limit(12)->get();
+        $saleProducts = Product::orderBy('sale_price','ASC')
+        ->where('sale_price','>',0)->limit(12)->get();
         // dd ($cats);
-        return view ('home.index', compact('cats'));
+        return view ('home.index', compact('newProducts','saleProducts'));
     }
 
     public function about()
