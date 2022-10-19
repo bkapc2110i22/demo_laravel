@@ -1,4 +1,4 @@
-$('#top-product, #sale-product').owlCarousel({
+$('#top-product, #top-xys').owlCarousel({
     items: 4,
     margin: 10,
     loop: true,
@@ -8,6 +8,7 @@ $('#top-product, #sale-product').owlCarousel({
         '<i class="fa-solid fa-angle-left"></i>', 
         '<i class="fa-solid fa-angle-right"></i>']
 });
+
 $('#san-pham-lien-quan').owlCarousel({
     items: 3,
     margin: 10,

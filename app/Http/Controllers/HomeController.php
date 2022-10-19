@@ -12,8 +12,9 @@ class HomeController extends Controller
         $newProducts = Product::orderBy('created_at','DESC')->limit(12)->get();
         $saleProducts = Product::orderBy('sale_price','ASC')
         ->where('sale_price','>',0)->limit(12)->get();
+        $ramdomProducts = Product::inRandomOrder()->limit(12)->get();
         // dd ($cats);
-        return view ('home.index', compact('newProducts','saleProducts'));
+        return view ('home.index', compact('ramdomProducts','newProducts','saleProducts'));
     }
 
     public function about()

@@ -3,6 +3,7 @@
 @section('main')
 
 <div class="container">
+
     <div id="banner" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#banner" data-slide-to="0" class="active"></li>
@@ -77,63 +78,10 @@
     </div>
 </div>
 
-<div class="top-product py-5">
-    <div class="container">
-        <div class="page-title">
-            <h3>Lastest Products</h3>
-            <div class="title-line"></div>
-        </div>
-        <div id="top-product" class="owl-carousel owl-theme">
-            @foreach($newProducts as $item)
-            <div class="item product-item">
-                <div class="pro-hot"></div>
-                <div class="banner-price red">
-                    <div class="x-price">
-                        <s>{{$item->price}}</s>
-                        <big>{{$item->sale_price}}</big>
-                    </div>
-                </div>
-                <div class="card text-left">
-                    <img class="card-img-top" src="{{url('uploads')}}/{{$item->image}}" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$item->name}}</h4>
-                        <p class="card-text">Price: {{$item->price}}</p>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</div>
+<x-product-carousel :data="$newProducts" title="Lastest Products"/>
+<x-product-carousel :data="$saleProducts" title="Sale Products"/>
+<x-product-carousel :data="$ramdomProducts" title="Random Products"/>
 
-<div class="top-product py-5">
-    <div class="container">
-        <div class="page-title">
-            <h3>Sale Products</h3>
-            <div class="title-line"></div>
-        </div>
-        <div id="sale-product" class="owl-carousel owl-theme">
-            @foreach($saleProducts as $item)
-            <div class="item product-item">
-                <div class="pro-hot"></div>
-                <div class="banner-price red">
-                    <div class="x-price">
-                        <s>{{$item->price}}</s>
-                        <big>{{$item->sale_price}}</big>
-                    </div>
-                </div>
-                <div class="card text-left">
-                    <img class="card-img-top" src="{{url('uploads')}}/{{$item->image}}" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$item->name}}</h4>
-                        <p class="card-text">Price: {{$item->price}}</p>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</div>
 
 <div class="main-page">
     <div class="container">
