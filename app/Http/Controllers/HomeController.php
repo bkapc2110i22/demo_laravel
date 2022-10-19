@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use Auth;
+use Str;
 class HomeController extends Controller 
 {
     public function index()
@@ -49,4 +50,11 @@ class HomeController extends Controller
         $customer = Auth::guard('cus')->user();
         return view('home.profile', compact('customer'));
     }
+
+    public function productDetail(Product $product)
+    {
+        return view('home.product-detail', compact('product'));
+    }
 }
+
+// http://127.0.0.1:8000/quan-dui-tre-em-cuc-chat-3

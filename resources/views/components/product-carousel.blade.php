@@ -19,7 +19,7 @@
                     <img class="card-img-top" src="{{url('uploads')}}/{{$item->image}}" alt="">
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="">{{$item->name}}</a>
+                            <a href="{{ route('home.productDetail', ['product'=> $item->id, 'slug' => Str::slug($item->name)]) }}">{{$item->name}}</a>
                         </h4>
                         <p class="card-text">Price: {{$item->price}}</p>
                     </div>
