@@ -78,9 +78,9 @@
     </div>
 </div>
 
-<x-product-carousel :data="$newProducts" title="Lastest Products"/>
-<x-product-carousel :data="$saleProducts" title="Sale Products"/>
-<x-product-carousel :data="$ramdomProducts" title="Random Products"/>
+<x-product-carousel :data="$newProducts" title="Lastest Products" />
+<x-product-carousel :data="$saleProducts" title="Sale Products" />
+<x-product-carousel :data="$ramdomProducts" title="Random Products" />
 
 
 <div class="main-page">
@@ -344,19 +344,10 @@
                 <h3>Categories</h3>
 
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">Active item</a>
-                    <a href="#" class="list-group-item list-group-item-action">Item</a>
-                    <a href="#" class="list-group-item list-group-item-action disabled">Disabled item</a>
-                    <a href="#" class="list-group-item list-group-item-action">Women Accessories</a>
-                    <a href="#" class="list-group-item list-group-item-action">Men Shoes</a>
-                    <a href="#" class="list-group-item list-group-item-action">Gift Specials</a>
-                    <a href="#" class="list-group-item list-group-item-action">Electronics</a>
-                    <a href="#" class="list-group-item list-group-item-action">iPhone 4SSamsung GalaxyMacBook Pro
-                        17"</a>
-                    <a href="#" class="list-group-item list-group-item-action">On sale</a>
-                    <a href="#" class="list-group-item list-group-item-action">Summer Specials</a>
-                    <a href="#" class="list-group-item list-group-item-action">Electronics</a>
-                    <a href="#" class="list-group-item list-group-item-action">Unique Stuff</a>
+                    @foreach($globalCats as $cat)
+                    <a class="list-group-item list-group-item-action"
+                        href="{{route('home.category', ['category'=> $cat->id, 'slug' => Str::slug($cat->name)])}}">{{$cat->name}}</a>
+                    @endforeach
                 </div>
 
                 <div class="card border-primary">

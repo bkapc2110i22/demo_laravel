@@ -55,6 +55,13 @@ class HomeController extends Controller
     {
         return view('home.product-detail', compact('product'));
     }
+
+    public function category (Category $category)
+    {
+        $products = $category->products()->paginate();
+
+       return view('home.category', compact('category','products'));
+    }
 }
 
 // http://127.0.0.1:8000/quan-dui-tre-em-cuc-chat-3

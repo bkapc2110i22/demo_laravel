@@ -24,6 +24,7 @@ Route::get('/logout', [HomeController::class, 'logout'])->name('home.logout');
 Route::post('/login', [HomeController::class, 'check_login']); 
 Route::get('/profile', [HomeController::class, 'profile'])->name('home.profile')->middleware('cus'); 
 Route::get('//{product}-{slug}', [HomeController::class, 'productDetail'])->name('home.productDetail'); 
+Route::get('/danh-muc/{category}-{slug}', [HomeController::class, 'category'])->name('home.category'); 
 
 Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('admin/login', [AdminController::class, 'check_login']);
@@ -44,5 +45,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         'user' =>  App\Http\Controllers\UserController::class,
     ]);
 
-   
 });

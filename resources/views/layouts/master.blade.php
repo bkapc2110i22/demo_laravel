@@ -64,8 +64,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">Giới thiệu</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="product.html">Sản phẩm</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                @foreach($globalCats as $cat)
+                                    <a class="dropdown-item" href="{{route('home.category', ['category'=> $cat->id, 'slug' => Str::slug($cat->name)])}}">{{$cat->name}}</a>
+                                @endforeach
+                                </div>
                     </li>
 
                     <li class="nav-item">
