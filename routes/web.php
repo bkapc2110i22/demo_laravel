@@ -55,7 +55,7 @@ Route::group(['prefix' => 'cart'], function() {
     Route::get('', [CartController::class, 'view'])->name('cart.view');
     Route::get('add/{product}', [CartController::class, 'add'])->name('cart.add');
 
-    // Route::get('remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::get('remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     // Route::get('update/{id}', [CartController::class, 'update'])->name('cart.update');
     // Route::get('clear', [CartController::class, 'clear'])->name('cart.clear');
 

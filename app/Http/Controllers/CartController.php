@@ -10,7 +10,6 @@ class CartController extends Controller
     public function view()
     {
         $carts = session('cart') ? session('cart') : [];
-
         return view ('home.cart-view', compact('carts'));
     }
 
@@ -32,15 +31,16 @@ class CartController extends Controller
             $carts[$product->id] = $cart_item;
         }
        
-
         session(['cart' => $carts]);
-
-       return redirect()->route('cart.view');
+        return redirect()->route('cart.view');
     }
 
     public function remove($id)
     {
-        # code...
+        $carts = session('cart') ? session('cart') : [];
+        unset($carts[$id]);
+        session(['cart' => $carts]);
+        return redirect()->route('cart.view');
     }
 
     public function update($id)

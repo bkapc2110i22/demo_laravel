@@ -31,7 +31,8 @@
                 <td>{{$item->quantity}}</td>
                 <td>{{$item->quantity * $item->price}}</td>
                 <td>
-                    <a href="" class="btn btn-sm btn-danger">&times;</a>
+                    <a href="{{ route('cart.remove', $item->id) }}"
+                    onclick="return confirm('Bạn có chắc không?')" class="btn btn-sm btn-danger">&times;</a>
                 </td>
             </tr>
             @endforeach
