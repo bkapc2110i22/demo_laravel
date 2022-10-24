@@ -45,11 +45,21 @@ class CartController extends Controller
 
     public function update($id)
     {
-        # code...
+        $carts = session('cart') ? session('cart') : [];
+       $quantity = request('quantity', 1);
+       $quantity = $quantity > 0 ? $quantity : 1;
+
+       if (isset($carts[$id])) {
+            $carts[$id]->quantity = $quantity;
+            session(['cart' => $carts]);
+       }
+
+       return redirect()->route('cart.view');
     }
 
     public function clear()
     {
-        # code...
+        session(['cart' => null]);
+        return redirect()->route('cart.view');
     }
 }

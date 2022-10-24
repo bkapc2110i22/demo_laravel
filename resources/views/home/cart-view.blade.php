@@ -28,16 +28,33 @@
                 </td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->price}}</td>
-                <td>{{$item->quantity}}</td>
+                <td>
+
+
+                    <form action="{{ route('cart.update', $item->id) }}" method="get">
+                        <input type="number" name="quantity" value="{{$item->quantity}}"
+                            style="width:60px; text-align:center">
+                        <button type="submit">Update</button>
+                    </form>
+
+                </td>
                 <td>{{$item->quantity * $item->price}}</td>
                 <td>
-                    <a href="{{ route('cart.remove', $item->id) }}"
-                    onclick="return confirm('Bạn có chắc không?')" class="btn btn-sm btn-danger">&times;</a>
+                    <a href="{{ route('cart.remove', $item->id) }}" onclick="return confirm('Bạn có chắc không?')"
+                        class="btn btn-sm btn-danger">&times;</a>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+
+    <br>
+
+    <div class="text-center">
+        <a href="{{ route('home.index') }}" class="btn btn-primary">Tiếp tục mua hàng</a>
+        <a href="{{ route('cart.clear') }}" onclick="return confirm('Bạn có chắc không?')" class="btn btn-danger">Xóa giỏ hàng</a>
+        <a href="{{ route('home.index') }}" class="btn btn-success">Đặt hàng</a>
+    </div>
 </div>
 
 
