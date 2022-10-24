@@ -22,6 +22,7 @@
                             <a href="{{ route('home.productDetail', ['product'=> $item->id, 'slug' => Str::slug($item->name)]) }}">{{$item->name}}</a>
                         </h4>
                         <p class="card-text">Price: {{$item->price}}</p>
+                        <a href="{{ route('cart.add', $item->id) }}" class="btn-add-cart btn btn-success btn-block">Add To Cart</a>
                     </div>
                 </div>
             </div>

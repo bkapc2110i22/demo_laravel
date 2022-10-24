@@ -23,7 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <a href="index.html">
+                    <a href="{{route('home.index')}}">
                         <img src="http://demo.minimalthemes.net/shopping-static/images/logo.png" alt="">
                     </a>
                 </div>
@@ -59,27 +59,29 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Trang chủ <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{route('home.index')}}">Trang chủ <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">Giới thiệu</a>
+                        <a class="nav-link" href="{{route('home.about')}}">Giới thiệu</a>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                @foreach($globalCats as $cat)
-                                    <a class="dropdown-item" href="{{route('home.category', ['category'=> $cat->id, 'slug' => Str::slug($cat->name)])}}">{{$cat->name}}</a>
-                                @endforeach
-                                </div>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Shop</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            @foreach($globalCats as $cat)
+                            <a class="dropdown-item"
+                                href="{{route('home.category', ['category'=> $cat->id, 'slug' => Str::slug($cat->name)])}}">{{$cat->name}}</a>
+                            @endforeach
+                        </div>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="blogs.html">Tin tức</a>
+                        <a class="nav-link" href="{{route('home.index')}}">Tin tức</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Liên hệ</a>
+                        <a class="nav-link" href="{{route('home.index')}}">Liên hệ</a>
                     </li>
                 </ul>
 

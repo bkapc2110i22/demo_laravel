@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,10 @@ Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login'
 Route::post('admin/login', [AdminController::class, 'check_login']);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
     Route::group(['prefix' => 'category'], function() {
         Route::get('/trashed', [CategoryController::class, 'trashed'])->name('category.trashed'); 
         Route::get('/restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
@@ -44,5 +47,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         'blog' =>  BlogController::class,
         'user' =>  App\Http\Controllers\UserController::class,
     ]);
+
+});
+
+Route::group(['prefix' => 'cart'], function() {
+
+    Route::get('', [CartController::class, 'view'])->name('cart.view');
+    Route::get('add/{product}', [CartController::class, 'add'])->name('cart.add');
+
+    // Route::get('remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    // Route::get('update/{id}', [CartController::class, 'update'])->name('cart.update');
+    // Route::get('clear', [CartController::class, 'clear'])->name('cart.clear');
 
 });
