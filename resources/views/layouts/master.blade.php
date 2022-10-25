@@ -39,6 +39,10 @@
                                 <i class="fa-solid fa-user-clock"></i> Đăng ký</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cart.view') }}">
+                                <i class="fa-solid fa-shopping-cart"></i> Cart ( {{$cart->totalQuantity}} )</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </a>

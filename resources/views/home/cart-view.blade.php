@@ -3,7 +3,14 @@
 @section('main')
 
 <div class="container">
-    <h2>Giỏ hàng của bạn</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Giỏ hàng của bạn</h2>
+        </div>
+        <div class="col-md-6">
+        <h2>Tổng tiền: {{ $cart->totalAmount}}</h2>
+        </div>
+    </div>
     <hr>
 
 
@@ -20,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($carts as $item)
+            @foreach($cart->items as $item)
             <tr>
                 <td>{{$loop->index + 1}}</td>
                 <td>
