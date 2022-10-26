@@ -47,6 +47,12 @@
                                 <i class="fa-solid fa-user"></i> Đăng xuất
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('order.history') }}">
+                                <i class="fa-solid fa-user"></i> My Orders
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home.profile') }}">
                                 <i class="fa-solid fa-user-clock"></i> Hi: {{auth('cus')->user()->name}}</a>

@@ -63,6 +63,7 @@ Route::group(['prefix' => 'cart'], function() {
 Route::group(['prefix' => 'order','middleware' => 'cus'], function() {
 
     Route::get('checkout', [OrderShoppingController::class, 'checkout'])->name('order.checkout');
+    Route::get('history', [OrderShoppingController::class, 'history'])->name('order.history');
     Route::post('checkout', [OrderShoppingController::class, 'post_checkout']);
 
 });

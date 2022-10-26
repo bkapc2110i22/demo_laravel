@@ -15,6 +15,12 @@ class OrderShoppingController extends Controller
         return view('home.checkout', compact('auth'));
     }
 
+    public function history ()
+    {
+        $auth = auth('cus')->user();
+        return view('home.history', compact('auth'));
+    }
+
     public function post_checkout(Request $req, Cart $cart)
     {
         $form_data= $req->only('email','name','phone','address');
