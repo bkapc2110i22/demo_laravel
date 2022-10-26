@@ -29,15 +29,31 @@
                 </div>
                 <div class="col-md-6 text-right">
                     <ul class="nav justify-content-center">
+                        @if (!auth('cus')->check())
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" href="{{ route('home.login') }}">
                                 <i class="fa-solid fa-user"></i> Đăng nhập
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('home.login') }}">
                                 <i class="fa-solid fa-user-clock"></i> Đăng ký</a>
                         </li>
+                        @else
+
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('home.login') }}">
+                                <i class="fa-solid fa-user"></i> Đăng xuất
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home.profile') }}">
+                                <i class="fa-solid fa-user-clock"></i> Hi: {{auth('cus')->user()->name}}</a>
+                        </li>
+
+
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cart.view') }}">
                                 <i class="fa-solid fa-shopping-cart"></i> Cart ( {{$cart->totalQuantity}} )</a>
@@ -63,7 +79,8 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{route('home.index')}}">Trang chủ <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{route('home.index')}}">Trang chủ <span
+                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('home.about')}}">Giới thiệu</a>

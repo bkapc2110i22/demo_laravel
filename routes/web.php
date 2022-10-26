@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderShoppingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,8 @@ use App\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/gioi-thieu.html', [HomeController::class, 'about'])->name('home.about'); 
-Route::get('/login', [HomeController::class, 'login'])->name('home.login'); 
-Route::get('/logout', [HomeController::class, 'logout'])->name('home.logout'); 
-Route::post('/login', [HomeController::class, 'check_login']); 
-Route::get('/profile', [HomeController::class, 'profile'])->name('home.profile')->middleware('cus'); 
+
+
 Route::get('//{product}-{slug}', [HomeController::class, 'productDetail'])->name('home.productDetail'); 
 Route::get('/danh-muc/{category}-{slug}', [HomeController::class, 'category'])->name('home.category'); 
 
@@ -54,9 +53,29 @@ Route::group(['prefix' => 'cart'], function() {
 
     Route::get('', [CartController::class, 'view'])->name('cart.view');
     Route::get('add/{product}', [CartController::class, 'add'])->name('cart.add');
-
     Route::get('remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::get('update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::get('clear', [CartController::class, 'clear'])->name('cart.clear');
+
+});
+
+
+Route::group(['prefix' => 'order','middleware' => 'cus'], function() {
+
+    Route::get('checkout', [OrderShoppingController::class, 'checkout'])->name('order.checkout');
+    Route::post('checkout', [OrderShoppingController::class, 'post_checkout']);
+
+});
+
+Route::group(['prefix' => 'account'], function() {
+
+    Route::get('/login', [HomeController::class, 'login'])->name('home.login'); 
+    Route::get('/logout', [HomeController::class, 'logout'])->name('home.logout'); 
+    Route::post('/login', [HomeController::class, 'check_login']); 
+    Route::get('/profile', [HomeController::class, 'profile'])->name('home.profile')->middleware('cus'); 
+    
+    Route::get('/register', [HomeController::class, 'register'])->name('home.register'); 
+    Route::post('/register', [HomeController::class, 'post_register']); 
+
 
 });

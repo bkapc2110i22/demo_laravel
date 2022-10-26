@@ -1,5 +1,3 @@
-
-
 INSERT INTO `categories` (`id`, `name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Áo quần', 1, '2022-10-17 23:58:40', '2022-10-17 23:58:40', NULL),
 (2, 'Túi xách', 1, '2022-10-17 23:58:46', '2022-10-17 23:58:46', NULL),

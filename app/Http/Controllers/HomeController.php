@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Customer;
 use Auth;
 use Str;
 class HomeController extends Controller 
@@ -62,6 +63,23 @@ class HomeController extends Controller
 
        return view('home.category', compact('category','products'));
     }
-}
 
-// http://127.0.0.1:8000/quan-dui-tre-em-cuc-chat-3
+
+
+    public function register()
+    {
+        return view ('home.register');
+    }
+
+    public function post_register (Request $req)
+    {
+        $form_data= $req->only('email','password','name','phone','address');
+        $form_data['password'] = bcrypt($req->password);
+        if(Customer::create($form_data)) {
+            return redirect()->route('home.login')->with('yes','Đăng ký thành công, Vui lòng đăng nhập');
+        }
+        return redirect()->back()->with('no','Đăng ký thất bại, kiểm tra lại tài khoản');
+    }
+
+   
+}
