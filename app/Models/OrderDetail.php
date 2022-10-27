@@ -17,4 +17,9 @@ class OrderDetail extends Model
         'price'
     ];
 
+    public function prod()
+    {
+        return $this->hasOne(Product::class, 'id','product_id');
+    }
+
 }

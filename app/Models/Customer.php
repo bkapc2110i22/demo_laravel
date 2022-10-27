@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use DB;
 class Customer extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -47,8 +47,19 @@ class Customer extends Authenticatable
     ];
 
 
-    public function orders()
+    // public function orders()
+    // {
+    //     return $this->hasMany(Order::class, 'customer_id','id')->orderBy('created_at','DESC');
+    // }
+
+    public function orders(Type $var = null)
     {
-        return $this->hasMany(Order::class, 'customer_id','id')->orderBy('created_at','DESC');
+        $data = Order::select('orders.id','orders.name','orders.email','orders.phone','orders.address','orders.created_at','orders.status', DB::raw('SUM(order_details.price * order_details.quantity) as TotalPrice'))
+        ->join('order_details', 'order_details.order_id','=','orders.id')
+        ->groupBy('orders.id','orders.name','orders.email','orders.phone','orders.address','orders.created_at','orders.status')
+        ->orderBy('orders.created_at','DESC');
+
+
+        return $data;
     }
 }

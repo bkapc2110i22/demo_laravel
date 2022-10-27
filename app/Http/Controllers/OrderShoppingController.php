@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Helper\Cart;
-
+use PDF;
 class OrderShoppingController extends Controller
 {
     public function checkout ()
@@ -18,7 +18,8 @@ class OrderShoppingController extends Controller
     public function history ()
     {
         $auth = auth('cus')->user();
-        return view('home.history', compact('auth'));
+        $orders = $auth->orders()->paginate();
+        return view('home.history', compact('auth','orders'));
     }
 
     public function post_checkout(Request $req, Cart $cart)
@@ -42,5 +43,16 @@ class OrderShoppingController extends Controller
             return redirect()->route('home.index')->with('yes','Đăng ký thành công, Vui lòng đăng nhập');
         }
         return redirect()->back()->with('no','Đăng ký thất bại, kiểm tra lại tài khoản');
+    }
+
+    public function pdf(Order $order)
+    {
+        // dd ($order);
+        $pdf = PDF::loadView('home.invoice',['order' => $order]);
+        if (request('download', false)) {
+            return $pdf->download('invoice.pdf');
+        }
+        return $pdf->stream('invoice.pdf');
+    
     }
 }

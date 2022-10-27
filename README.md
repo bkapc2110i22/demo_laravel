@@ -7,6 +7,57 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Tạo PDF Online
+### Bước 1: Tại thư mục dự án, mở cmd lên và chạy lệnh sau
+```php
+composer require barryvdh/laravel-dompdf
+```
+### Bước 2: mở file config/app.php tìm đến provider và alias vào thêm lần lượt code sau
+```php
+'providers' => [
+    //............... cuối đoạn này
+    Barryvdh\DomPDF\ServiceProvider::class
+
+'aliases' => [
+    //......... thêm nhu sau
+    'PDF' => Barryvdh\DomPDF\Facade\Pdf
+```
+### Bước 3: Tạo route, controller
+#### Route
+```php
+    Route::get('order-pdf/{order}', [OrderShoppingController::class, 'pdf'])->name('order.pdf');
+```
+
+#### Trong controller
+```php 
+use PDF;
+//... Tại phương thức xử lý
+    public function pdf(Order $order)
+    {
+        $pdf = PDF::loadView('home.invoice',['order' => $order]);
+        return $pdf->stream('invoice.pdf'); // xem online
+        // return $pdf->download('invoice.pdf'); // Tải về
+    
+    }
+```
+### Trong views
+```php 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CHI TIẾT ĐƠN HÀNG</h1>
+    <P>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, quasi mollitia magni odio natus quibusdam exercitationem reiciendis nisi nobis cumque voluptatum quod, atque veritatis doloribus est modi debitis dolores corporis.</P>
+</body>
+</html>
+
+```
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
